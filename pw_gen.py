@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 from sys import argv
 from string import ascii_lowercase as l, ascii_uppercase as u, digits as d
@@ -17,14 +17,16 @@ USAGE = '''pw_gen (<lenghth>) (<count>)
     pw_gen x y 
         y passwords x characters long
 '''
-if not argv:
+
+if len(argv) == 1:
     pw_length = 8
     pw_count = 1
-elif len(argv) == 1 and isinstance(argv[0], int):
-    pw_length = argv[0]
+elif len(argv) == 2 and argv[1].isnumeric():
+    pw_length = int(argv[1]) - 1
     pw_count = 1
-elif len(argv) == 2 and isinstance(argv[0], int) and isinstance(argv[1], int):
-    pw_length, pw_count = argv
+elif len(argv) == 3 and argv[1].isnumeric() and argv[2].isnumeric():
+    pw_length = int(argv[1]) - 1 
+    pw_count = int(argv[2])
 else:
     print(USAGE)
     exit(1)
